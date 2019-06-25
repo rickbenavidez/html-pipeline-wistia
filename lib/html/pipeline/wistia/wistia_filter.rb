@@ -5,7 +5,7 @@ module HTML
         #
         # This filter converts wistia embed or medial url into a wistia embed.
         #
-        regex = /(?<=^|\s|<div>|<br>)https?:\/\/(?:\w+\.)?(?:wistia\.com)\/(?:embed\/)?(?:medias)\/([A-Za-z0-9_-]{4,15})/
+        regex = /(?<!">|"|\()https?:\/\/(?:\w+\.)?(?:wistia\.com)\/(?:embed\/)?(?:medias)\/([A-Za-z0-9_-]{4,15})/
         @text.gsub(regex) do
           wistia_id = $1
           # Prefix with two "\n" for compatibility with markup such as Markdown:
