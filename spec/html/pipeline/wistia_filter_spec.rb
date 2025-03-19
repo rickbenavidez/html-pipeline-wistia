@@ -68,5 +68,17 @@ describe HTML::Pipeline::WistiaFilter do
         %(\n\n<div class="video wistia" data-wistia-id="po0vtz6ggg"><iframe src="//fast.wistia.net/embed/iframe/po0vtz6ggg?videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="360" style="border-radius: 10px;"></iframe><script src="//fast.wistia.net/assets/external/E-v1.js" async></script></div>)
       )
     end
+
+    it "generated iframe with autoPlay option" do
+      source = 'http://fast.wistia.com/embed/medias/po0vtz6ggg'
+      result = subject.to_html(
+        source,
+        autoPlay: true
+      )
+
+      expect(result).to eq(
+        %(\n\n<div class="video wistia" data-wistia-id="po0vtz6ggg"><iframe src="//fast.wistia.net/embed/iframe/po0vtz6ggg?autoPlay=true&videoFoam=true" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="360" style=""></iframe><script src="//fast.wistia.net/assets/external/E-v1.js" async></script></div>)
+      )
+    end
   end
 end
